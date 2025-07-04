@@ -1,0 +1,14 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "dev tinder for connectivity",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
+  "author": "Tarun Harsh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

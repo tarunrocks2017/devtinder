@@ -15,7 +15,7 @@ app.post("/signup", async (req, res) => {
         await user.save();
     res.send("user created successfully");
     } catch (err) {
-        res.send("error in user creation")
+        res.send("error in user creation"+ err.message)
     }
 });
 
@@ -56,9 +56,12 @@ app.delete("/deleteUser", async (req, res) => {
 
 // update api
 
-app.put("/updateUser", async (req, res) => {
+app.patch("/user", async (req, res) => {
     try {
-        const updatedUser = await User.findByIdAndUpdate()
+        const updatedUser = await User.findByIdAndUpdate(req.body.userId, req.body, {
+            runValidator:true
+        });
+        res.send(updatedUser)
     } catch(err) {
         res.send("something went wrong while updating")
     }

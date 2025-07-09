@@ -24,10 +24,43 @@ app.post("/signup", async (req, res) => {
 
 app.get("/finduser", async (req, res) => {
     try {
-        const user = await User.find({email:req.body.email});
+        const user = await  User.find({email:req.body.email});
         res.send(user)
     } catch( err ) {
         res.send("error in user finding")
+    }
+});
+
+//feed api
+
+app.get("/feed",async (req,res) => {
+    try {
+        const userData = await User.find({});
+        res.send(userData);
+    } catch (err) {
+        res.send("somethig went wrong");
+    }
+});
+
+// delete api
+
+app.delete("/deleteUser", async (req, res) => {
+    try {
+        const deletedUser = await User.findByIdAndDelete(req.body.userId,{lean:true});
+        console.log(deletedUser);
+        res.send(deletedUser);
+    } catch(err) {
+        res.send("something went wrong in deletion")
+    }
+})
+
+// update api
+
+app.put("/updateUser", async (req, res) => {
+    try {
+        const updatedUser = await User.findByIdAndUpdate()
+    } catch(err) {
+        res.send("something went wrong while updating")
     }
 })
 
